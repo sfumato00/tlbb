@@ -1,9 +1,11 @@
-local function assertStartingRoom(expectedRoom)
-    assert(env["房间"] == expectedRoom, "Invalid starting room. Abort.")
+function AssertStartingRoom(expectedRoom)
+    local roomId = GetCurrentRoomId()
+    debugc("Current Room Id: " .. roomId)
+    assert(roomId == expectedRoom, "Invalid starting room. Abort.")
 end
 
 function df2sl()
-    assertStartingRoom("登封县北街")
+    AssertStartingRoom("登封县北街")
     local function _eventHandler(room_name, exits)
         if room_name == "少室山山脚" then
             raiseEvent("TravelFinished")
@@ -30,7 +32,7 @@ function df2sl()
 end
 
 function sl2df()
-    assertStartingRoom("少室山山脚")
+    AssertStartingRoom("少室山山脚")
     local function _eventHandler(room_name, exits)
         if room_name == "登封县北街" then
             raiseEvent("TravelFinished")
@@ -57,7 +59,7 @@ function sl2df()
 end
 
 function toEast()
-    assertStartingRoom("东安门")
+    AssertStartingRoom("东安门")
     local function _eventHandler(room_name, exits)
         local rid = GetRoomId(room_name, exits)
         if rid == "黄土大道-开封-泰山-蓬莱-se-w" then
@@ -78,8 +80,8 @@ function toEast()
 end
 
 function toDongAnMen()
-    assertStartingRoom("黄土大道")
-    local function _toEast(room_name, exits)
+    AssertStartingRoom("黄土大道-开封-泰山-蓬莱-se-w")
+    local function _eventHandler(room_name, exits)
         if room_name == "东安门" then
             raiseEvent("TravelFinished")
         elseif room_name ~= "黄土大道" then
@@ -92,14 +94,13 @@ function toDongAnMen()
         end
     end
 
-    env["onEnterRoomEventHandler"] = _eventHandler
     raiseEvent("TravelStarted")
+    env["onEnterRoomEventHandler"] = _eventHandler
     send("w")
 end
 
 function toXiaoShanPo()
-    assertStartingRoom("天水关")
-
+    AssertStartingRoom("天水关")
     local function _eventHandler(room_name, exits)
         if room_name == "小山坡" then
             raiseEvent("TravelFinished")
@@ -124,7 +125,7 @@ function toXiaoShanPo()
 end
 
 function toTianShuiGuan()
-    assertStartingRoom("小山坡")
+    AssertStartingRoom("小山坡")
 
     local function _eventHandler(room_name, exits)
         if room_name == "天水关" then
@@ -147,4 +148,39 @@ function toTianShuiGuan()
     env["onEnterRoomEventHandler"] = _eventHandler
     raiseEvent("TravelStarted")
     send("ed")
+end
+
+function shangTianShan()
+    AssertStartingRoom("虎跳溪")
+
+    local tid = tempTimer(1, function() send("jump over 小溪") end, true)
+
+    tempTrigger("断魂崖 - ", function()
+        killTimer(tid)
+        CheckFreeze(function()
+            env["onEnterRoomEventHandler"] = function(room_name, exits)
+                if room_name == "屏风壁" then
+                    send("l 石壁")
+                    CheckFreeze(function()
+                        send("climb up")
+                        CheckFreeze(function()
+                            send("n")
+                            CheckFreeze(function()
+                                send("l 云雾;;l 云雾;;l 黑影;;run to 主峰")
+                                CheckFreeze(function()
+                                    send("nu;;e;;nu;;e;;nu;;n;;n;;n;;n")
+                                end)
+                            end)
+                        end)
+                    end)
+                end
+            end
+            send("climb down")
+        end)
+    end, 1)
+end
+
+function xiaTianShan()
+    AssertStartingRoom("小院-s-n-e-w")
+    send("s;;w;;s;;s;;s;;s;;s;;s;;sd;;sd;;wu;;sd;;e;;se;;e;;e;;eu")
 end

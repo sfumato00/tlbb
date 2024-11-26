@@ -3,6 +3,7 @@ AuxiliaryRooms = {
         ["黄土大道-开封-大理-n-w-sw"] = { "north", "west", "southwest" },
         ["黄土大道-开封-洛阳-登封-s-e-w"] = { "south", "east", "west" },
         ["黄土大道-开封-泰山-蓬莱-se-w"] = { "southeast", "west" },
+        ["黄土大道-n-ne-w"] = { "north", "northeast", "west" },
     },
     ["汴梁南大街"] = {
         ["汴梁南大街-1"] = { "south", "north", "west" },
