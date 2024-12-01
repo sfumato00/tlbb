@@ -184,3 +184,15 @@ function xiaTianShan()
     AssertStartingRoom("小院-s-n-e-w")
     send("s;;w;;s;;s;;s;;s;;s;;s;;sd;;sd;;wu;;sd;;e;;se;;e;;e;;eu")
 end
+
+function ToMuRong()
+    AssertStartingRoom("太湖边")
+    local trigger_id = tempTrigger("渔人码头 - ", function()
+        raiseEvent("TravelFinished")
+    end, 1)
+    tempTimer(24, function()
+        killTrigger(trigger_id)
+    end)
+    raiseEvent("TravelStarted")
+    send("sail")
+end

@@ -11,8 +11,12 @@ MapConnections = {
         },
         ["少林"] = {
             room = "登封县北街",
-            func = df2sl
-        }
+            func = df2sl,
+        },
+        ["姑苏慕容"] = {
+            room = "",
+            func = NotImplemented,
+        },
     },
     ["东方"] = {
         ["中原"] = {
@@ -28,7 +32,7 @@ MapConnections = {
         ["灵鹫宫"] = {
             room = "虎跳溪",
             func = shangTianShan,
-        }
+        },
     },
     ["少林"] = {
         ["中原"] = {
@@ -40,6 +44,12 @@ MapConnections = {
         ["中原"] = {
             room = "小院",
             func = xiaTianShan,
-        }
-    }
+        },
+    },
+    ["姑苏慕容"] = {
+        ["中原"] = {
+            room = "渔人码头",
+            func = NotImplemented,
+        },
+    },
 }

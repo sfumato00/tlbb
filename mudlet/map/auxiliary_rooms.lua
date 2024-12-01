@@ -49,6 +49,24 @@ AuxiliaryRooms = {
     ["小院"] = {
         ["小院-s-n-w"] = { "south", "north", "west" },
         ["小院-s-n-e-w"] = { "south", "north", "east", "west" },
+    },
+    ["大路"] = {
+        ["大路-s-n-se"] = { "south", "north", "southeast" },
+    },
+    ["大道"] = {
+        ["大道-n-s-ne"] = { "north", "south", "northeast" },
+    },
+    ["太湖边"] = {
+        ["太湖边-nw"] = { "northwest", },
+        ["太湖边-e-w"] = { "east", "west" },
+    },
+    ["十里柳堤"] = {
+        ["十里柳堤-eu-w"] = { "eastup", "west" },
+        ["十里柳堤-e-w"] = { "east", "west" },
+    },
+    ["荷花荡中"] = {
+        ["荷花荡中-se-ne"] = {
+            "southeast", "northeast",
+        },
     }
-
 }
