@@ -68,5 +68,10 @@ AuxiliaryRooms = {
         ["荷花荡中-se-ne"] = {
             "southeast", "northeast",
         },
+    },
+    ["长廊"] = {
+        ["长廊-n-s-e-w"] = {
+            "north", "south", "east", "west",
+        },
     }
 }

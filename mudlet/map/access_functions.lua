@@ -186,13 +186,29 @@ function xiaTianShan()
 end
 
 function ToMuRong()
-    AssertStartingRoom("太湖边")
-    local trigger_id = tempTrigger("渔人码头 - ", function()
-        raiseEvent("TravelFinished")
-    end, 1)
-    tempTimer(24, function()
-        killTrigger(trigger_id)
-    end)
+    AssertStartingRoom("太湖边-nw")
+
+    local function _eventHandler(room_name, exits)
+        if room_name == "渔人码头" then
+            raiseEvent("TravelFinished")
+        end
+    end
+
+    env["onEnterRoomEventHandler"] = _eventHandler
+    raiseEvent("TravelStarted")
+    send("sail")
+end
+
+function MuRongToMain()
+    AssertStartingRoom("渔人码头")
+
+    local function _eventHandler(room_name, exits)
+        if room_name == "太湖边-nw" then
+            raiseEvent("TravelFinished")
+        end
+    end
+
+    env["onEnterRoomEventHandler"] = _eventHandler
     raiseEvent("TravelStarted")
     send("sail")
 end

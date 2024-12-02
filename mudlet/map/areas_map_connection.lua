@@ -14,8 +14,8 @@ MapConnections = {
             func = df2sl,
         },
         ["姑苏慕容"] = {
-            room = "",
-            func = NotImplemented,
+            room = "太湖边-nw",
+            func = ToMuRong,
         },
     },
     ["东方"] = {
@@ -41,7 +41,7 @@ MapConnections = {
         },
     },
     ["灵鹫宫"] = {
-        ["中原"] = {
+        ["西方"] = {
             room = "小院",
             func = xiaTianShan,
         },
@@ -49,7 +49,7 @@ MapConnections = {
     ["姑苏慕容"] = {
         ["中原"] = {
             room = "渔人码头",
-            func = NotImplemented,
+            func = MuRongToMain,
         },
     },
 }
